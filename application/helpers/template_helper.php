@@ -16,7 +16,8 @@ function GetJSFiles($page)
 {
 	$ds = DIRECTORY_SEPARATOR;
 	$js_local = getcwd() . $ds . "assets" . $ds . "js" . $ds . implode($ds, explode("/", $page)). ".js";
-	$js_web = base_url() . "/assets/js/" . implode("/", explode("/", $page)). ".js";
+	$js_web = base_url() . "assets/js/" . implode("/", explode("/", $page)). ".js";
+	
 	if(file_exists($js_local))
 	{return "<script type=\"text/javascript\" src=\"" . $js_web . "\"></script>";}
 	else

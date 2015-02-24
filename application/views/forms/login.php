@@ -1,5 +1,7 @@
 <h1>Login To Simple Help Desk</h1>
-
+<?if($Logout):?>
+<p class="msg info">You have been logged out</p>
+<?endif;?>
 <div style="width:425px;margin: 0 auto;" id="duh">
 
 <fieldset>
@@ -8,7 +10,7 @@
 	<table class="nostyle" >
 		<tr>
 			<td style="width:70px;"><b>Email:</b>  </td>
-			<td><input type="text" size="40" name="email" class="input-text" /></td>
+			<td><input type="text" size="40" name="email" id='login_email' class="input-text" /></td>
 		</tr>
 		<tr>
 			<td><b>Password:</b></td>
@@ -22,3 +24,4 @@
 </fieldset>
 <p class="msg error hide" id="Login_err"></p>
 </div>
+

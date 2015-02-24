@@ -16,7 +16,7 @@ class M_login extends CI_Model {
 		{return $c;}
 		else
 		{
-			$sql = "select 1 count, UserID, FirstName, LastName, PermissionLevel
+			$sql = "select 1 count, UserID, CustomerID, FirstName, LastName, Email, PermissionLevel
 			from Users u 
 			inner join UserRoles ur on ur.UserRoleID = u.UserRoleID 
 			where u.email = " . dbText($email);

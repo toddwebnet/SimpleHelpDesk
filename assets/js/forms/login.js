@@ -23,17 +23,12 @@ function LoginFormProc()
 		success:function(data) {
 			AjaxStopLoading();
 			if(data.pass==1)
-			{
-				document.location = base_url;
-			}
+			{document.location = base_url;}
 			else
 			{
 				$("#Login_err").html("Invalid Security Credentials");
 				$("#Login_err").show(255);
 			}
-
-			
-			
 		}
 	});	
 

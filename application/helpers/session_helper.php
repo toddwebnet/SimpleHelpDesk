@@ -11,3 +11,9 @@ function SetSessionVariable($key,$value)
 	$data = array($key=>$value);
 	$CI->session->set_userdata($data);
 }
+
+function EmptySessionVariables()
+{
+	$CI = get_instance();
+	$CI->session->sess_destroy();	
+}

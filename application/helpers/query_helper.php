@@ -179,20 +179,25 @@ function GetOneField($field, $table="", $where="", $value="",$cached=false) {
 		$sql = $field;
 	}
 	$CI = get_instance();
-	$CI->load->model('options');
+	$CI->load->model('m_tickets');
 	if($cached)
-	{$return = GetFirstResultFromQueryCached($CI->options, $sql);	}
+	{$return = GetFirstResultFromQueryCached($CI->m_tickets, $sql);	}
 	else
-	{$return = GetFirstResultFromQuery($CI->options, $sql);}
+	{$return = GetFirstResultFromQuery($CI->m_tickets, $sql);}
 
 	return (isset($return->Field) ? $return->Field : "wrod");	
 }
 
-function dbText($text)
+function dbText($text, $length = null)
 {
-	return "'" . dbQuote($text) . "'";
+	return "'" . dbQuote($text, $length) . "'";
 }
-function dbQuote($text)
+function dbQuote($text, $length = null)
 {
+	if($length != null)
+	{
+		if(strlen($text)> $length)
+		{$text = substr($text, $length);}
+	}
 	return str_replace("'", "''", $text);
 }

@@ -17,6 +17,10 @@
 	<script type="text/javascript" src="<?=base_url();?>assets/js/toggle.js"></script>
 	<script type="text/javascript" src="<?=base_url();?>assets/js/ui.core.js"></script>
 	<script type="text/javascript" src="<?=base_url();?>assets/js/ui.tabs.js"></script>
+
+<link  rel="stylesheet" href="<?=base_url();?>assets/js/select2/select2.css" />
+<script src="<?=base_url();?>assets/js/select2/select2.js"></script>
+
 	<?=$extra_js?>
 	<script type="text/javascript">
 	var base_url = "<?=base_url()?>";
@@ -39,21 +43,14 @@
 	<!-- Tray -->
 	<div id="tray" class="box">
 
-		<p class="f-left box">
-
-			<!-- Switcher <?if (false):?>
-			<span class="f-left" id="switcher">
-				<a href="#" rel="1col" class="styleswitch ico-col1" title="Display one column"><img src="<?=base_url();?>assets/design/switcher-1col.gif" alt="1 Column" /></a>
-				<a href="#" rel="2col" class="styleswitch ico-col2" title="Display two columns"><img src="<?=base_url();?>assets/design/switcher-2col.gif" alt="2 Columns" /></a>
-			</span>
-			<?endif;?>-->
+		<p class="f-left box">			
 			Project: <strong>Simple Help Desk</strong>
 
 		</p>
 		
-		<!--<?if (false):?>
-		<p class="f-right">User: <strong><a href="#">Administrator</a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="#" id="logout">Log out</a></strong></p>
-			<?endif;?>-->
+		<?if (Is_Numeric(GetSessionVariable("UserID"))):?>
+		<p class="f-right">User: <strong><a href="/user/info/<?=GetSessionVariable("UserID")?>"><?=GetSessionVariable("FirstName")?> <?=GetSessionVariable("LastName")?></a></strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong><a href="/login/out/" id="logout">Log out</a></strong></p>
+		<?endif;?>
 	
 
 	</div> <!--  /tray -->
@@ -64,22 +61,15 @@
 	<div id="menu" class="box">
 		<?if($UserID):?>
 		<ul class="box f-right">
-			<li>
-			<div>
-			
-			<form id="SearchTickets" action="#" onSubmit="return false">
-			
-			<input type="text" name="SearchTicketsBox">
-			</div>
-			</form>
-			</li>
+			<li><a href="<?=base_url()?>admin/"><span><strong>Admin</strong></span></a></li>
 		</ul>
-
+		
 		<ul class="box">
 		
-			<li id="menu-active"><a href="#"><span>My Tickets</span></a></li> <!-- Active -->
-			<li><a href="#"><span>All Open Tickets</span></a></li>
-			<li><a href="#"><span>Start New Ticket</span></a></li>
+			<li id="menu-active"><a href="<?=base_url()?>tickets/show/MyTickets"><span>My Tickets(<?=$MyAssignedTicketsCount?>,<?=$MyStartedTicketsCount?>)</span></a></li> 
+			<li id="menu-active"><a href="<?=base_url()?>tickets/show/Unassigned"><span>Unassigned Tickets (<?=$UnassignedTicketsCount?>)</span></a></li> 
+			<li><a href="<?=base_url()?>tickets/show/OpenTickets"><span>All Open Tickets (<?=$OpenTicketsCount?>)</span></a></li>
+			<li><a href="<?=base_url()?>tickets/show/NewTicket"><span>Start New Ticket</span></a></li>
 
 		</ul>
 		<?endif;?>
@@ -91,69 +81,7 @@
 	<!-- Columns -->
 	<div id="cols" class="box">
 		
-		<?if (false):?>
-		<!-- Aside (Left Column) -->
-		<div id="aside" class="box">
-
-			<div class="padding box">
-
-				<!-- Logo (Max. width = 200px) -->
-				<p id="logo"><a href="#"><img src="<?=base_url();?>assets/tmp/logo.gif" alt="Our logo" title="Visit Site" /></a></p>
-
-				<!-- Search -->
-				<form action="#" method="get" id="search">
-					<fieldset>
-						<legend>Search</legend>
-
-						<p><input type="text" size="17" name="" class="input-text" />&nbsp;<input type="submit" value="OK" class="input-submit-02" /><br />
-						<a href="javascript:toggle('search-options');" class="ico-drop">Advanced search</a></p>
-
-						<!-- Advanced search -->
-						<div id="search-options" style="display:none;">
-
-							<p>
-								<label><input type="checkbox" name="" checked="checked" /> Option I.</label><br />
-								<label><input type="checkbox" name="" /> Option II.</label><br />
-								<label><input type="checkbox" name="" /> Option III.</label>
-							</p>
-
-						</div> <!-- /search-options -->
-
-					</fieldset>
-				</form>
-
-				<!-- Create a new project -->
-				<p id="btn-create" class="box"><a href="#"><span>Create a new project</span></a></p>
-
-			</div> <!-- /padding -->
-
-			<ul class="box">
-				<li><a href="#">Lorem ipsum</a></li>
-				<li><a href="#">Lorem ipsum</a></li>
-				<li><a href="#">Lorem ipsum</a></li>
-				<li id="submenu-active"><a href="#">Active Page</a> <!-- Active -->
-					<ul>
-						<li><a href="#">Lorem ipsum</a></li>
-						<li><a href="#">Lorem ipsum</a></li>
-						<li><a href="#">Lorem ipsum</a></li>
-						<li><a href="#">Lorem ipsum</a></li>
-						<li><a href="#">Lorem ipsum</a></li>
-					</ul>
-				</li>
-				<li><a href="#">Lorem ipsum</a></li>
-				<li><a href="#">Lorem ipsum</a>
-					<ul>
-						<li><a href="#">Lorem ipsum</a></li>
-						<li><a href="#">Lorem ipsum</a></li>
-						<li><a href="#">Lorem ipsum</a></li>
-					</ul>
-                </li>
-				<li><a href="#">Lorem ipsum</a></li>
-			</ul>
-
-		</div> <!-- /aside -->
 		
-		<hr class="noscreen" />
-		<?endif;?>
 		<!-- Content (Right Column) -->
 		<div id="content" class="box">
+<div id="TopMessageBar" style="display:none"></div>

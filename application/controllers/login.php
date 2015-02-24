@@ -14,13 +14,20 @@ class Login extends CI_Controller {
 			"title" => "Simple Help Desk"
 			);
 	}
-	public function index()
+	public function index($Logout=false)
 	{
+
+		EmptySessionVariables();
 		$this->template_vars['title'] .= " - Login ";
 		$data = array(
 			"template_vars" => $this->template_vars,
+			"Logout" => $Logout
 			);
 		LoadPage("forms/login", $data);
+	}
+	public function out()
+	{
+		$this->index(true);	
 	}
 
 	function a_proc_login()
